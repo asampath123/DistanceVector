@@ -1,0 +1,44 @@
+You are to implement distributed asynchronous distance vector routing. Routers send their cost for reaching all nodes within the network to its immediate neighbors. Note that in our discussion of distance vector, we’ve always referred to the nodes as routers. These nodes are actual sub- networks within an organization’s networking infrastructure. For the purposes of this assignment, we will continue to refer to the nodes as routers, and will use the IP addresses of the nodes as the destinations in the forwarding tables, and in the update messages.
+The RIP protocol supports both request and update messages. You are only required to implement update messages. Your code should implement periodic updates. The update message will contain a list of IP addresses, and a corresponding cost for reaching each IP address. See Figure 1.
+
+Main - 
+	Your main function should accept the following command line parameters: config, portnumber, TTL, infinity, Period.
+
+	Config is a file that contains the network configuration. Each line of the file will be of the following format: <IP address> <neighbor>. The IP address is the address of a node in the network. Neighbor is a Boolean variable which indicates whether the node is a directly connected neighbor or not.
+
+	Portnumber identifies the port that your routing application will use to communicate. Since, multiple student groups may be using the same machines; each student group will be assigned a portnumber. All routers within your network will use the same portnumber.
+
+	TTL is the default time-to-live value for the records in your routing table.
+
+	Infinity is the default value for indicating that a node is not reachable. You will adapt this value to test how it affects the time that it takes the routers to converge to the actual state of the network. You may test your code with a default TTL of 90 seconds.
+
+	Period indicates the default frequency for sending update messages. You may test your code with a default Period of 30 seconds.
+
+	Split Horizon is a Boolean variable which indicates whether split horizon is to be used when advertising costs to neighbors.
+
+
+Typdef struct {
+NodeAddr Destination; /* address of the destination */ o NodeAddr Nexthop; /* address of the next hop */
+Int Cost; /* distance metric */
+u_short TTL; /* time to live in seconds */ 
+} Route_entry;
+
+
+List <Node>
+
+Class Node{
+	Node name  	: dummy, A, B, C, D, etc
+	IP Address 	: 
+	sock fd 	: 
+	cost 		: 
+	nexthop 	: 
+	Destination : 
+	ttl 		: 
+	Learnt		: B,C,D // Update Message access, at a time only one node
+	SHflag		: true / false
+};
+
+// before Send filter from Learnt
+Initializer:
+
+
